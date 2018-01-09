@@ -31,7 +31,10 @@
     methods: {
       submitForm () {
         this.submitState = true
-        fetch('/api/user/sdfsdf').then(res => {
+        fetch('/api/json', {
+          method: 'post',
+          data: { a: 2 }
+        }).then(res => {
           console.log(res)
         }).finally(() => {
           this.submitState = false

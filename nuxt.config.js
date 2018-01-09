@@ -59,10 +59,6 @@ module.exports = {
       'element-ui'
     ]
   },
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
-  ],
   plugins: [
     { src: '~plugins/vue-ElementUI', ssr: false }
   ],
@@ -74,14 +70,14 @@ module.exports = {
   /**
    * 代理设置
    * */
+  modules: [
+    // npm install @nuxtjs/proxy -D
+    ['@nuxtjs/proxy']
+  ],
   proxy: {
-    '/app/': {
-      target: '127.0.0.1:8800',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/api'
-      },
-      secure: false
-    },
-  }
+    '/api': {
+      pathRewrite: { '^/api': '/api' },
+      target: 'http://127.0.0.1:8800'
+    }
+  },
 }

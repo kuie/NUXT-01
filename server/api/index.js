@@ -1,8 +1,7 @@
 "use strict";
 const router = require('koa-router')();
 const path = require('path');
-// vue Template
-console.log('dff');
+router.prefix('/api');
 router.get('/', async ctx => {
   ctx.body = '测试'
 });
@@ -16,5 +15,9 @@ router.get('/json', async (ctx, next) => {
     title: 'koa2 json'
   }
 });
-
+router.post('/json', async (ctx, next) => {
+  ctx.body = {
+    title: 'koa2 json post'
+  }
+});
 module.exports = router;
