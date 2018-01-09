@@ -42,7 +42,7 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 ```js
 const nuxtConfigFile = resolve(rootDir, 'nuxt.config.js')
 
-const options = {}
+let options = {}
 if (fs.existsSync(nuxtConfigFile)) {
   options = require(nuxtConfigFile)
 }
