@@ -54,7 +54,15 @@ module.exports = {
         }
       },
     ],
+    vendor: [
+      'axios',
+      'element-ui'
+    ]
   },
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
+  ],
   plugins: [
     { src: '~plugins/vue-ElementUI', ssr: false }
   ],
@@ -63,4 +71,17 @@ module.exports = {
    * 默认状态下缓存1000个组件，缓存时间15分钟
    * */
   cache: true,
+  /**
+   * 代理设置
+   * */
+  proxy: {
+    '/app/': {
+      target: '127.0.0.1:8800',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '/api'
+      },
+      secure: false
+    },
+  }
 }

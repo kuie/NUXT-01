@@ -31,9 +31,11 @@
     methods: {
       submitForm () {
         this.submitState = true
-        setTimeout(() => {
+        fetch('/api/user/sdfsdf').then(res => {
+          console.log(res)
+        }).finally(() => {
           this.submitState = false
-        }, 5000)
+        })
       }
     }
   }
