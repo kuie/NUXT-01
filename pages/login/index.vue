@@ -35,7 +35,10 @@
         this.submitState = true
         login(this.form.name, this.form.pwd)
           .then(res => {
-            console.log(res)
+            this.$message({
+              type: res.code === 200 ? 'success' : 'warning',
+              message: res.msg
+            })
           })
           .catch(err => {
             console.log(err)

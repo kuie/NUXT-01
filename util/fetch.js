@@ -29,5 +29,9 @@ export function _fetch (url, method, paramsObj) {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: obj2params(paramsObj)
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json()
+    }
   })
 }

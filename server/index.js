@@ -8,9 +8,11 @@ const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser');
 /*log打印*/
 const logger = require('koa-logger');
-
-const index = require('./api/index')
+/*工具箱*/
 const util = require('util')
+/*路由文件*/
+const index = require('./api/index')
+const loginRegister = require('./api/login&register')
 onerror(app);
 /*应用中间件*/
 app.use(bodyparser({
@@ -37,7 +39,7 @@ app.use(async (ctx, next) => {
     ctx.throw(404, '请求被阻止了啦...')
   }
 })
-app.use(index.routes(), index.allowedMethods());
+app.use(loginRegister.routes(), loginRegister.allowedMethods());
 
 app.listen(8800, '127.0.0.1')
 
