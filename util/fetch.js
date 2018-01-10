@@ -1,15 +1,9 @@
 export function obj2params (obj) {
   let result = ''
-  let item
-  for (item in obj) {
-    result += '&' + item + '=' + encodeURIComponent(obj[item])
+  for (let item in obj) {
+    result += `&${item}=${encodeURIComponent(obj[item])}`
   }
-  // 因为result第一个参数是 & 所以需要去掉
-  if (result) {
-    result = result.slice(1)
-  }
-  console.log(result)
-  return result
+  return result ? result.slice(1) : result
 }
 
 export function post (url, paramsObj) {
@@ -32,6 +26,11 @@ export function _fetch (url, method, paramsObj) {
   }).then(res => {
     if (res.status === 200) {
       return res.json()
+    } else {
+      this.$message({
+        type: 'warning',
+        message: `${method}接口交互失败`
+      })
     }
   })
 }
