@@ -41,7 +41,7 @@
             })
           })
           .catch(err => {
-            console.log(err)
+            this.$message({ type: 'error', message: err.toString() })
           })
           .finally(() => {
             this.submitState = false

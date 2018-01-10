@@ -6,15 +6,15 @@ export function obj2params (obj) {
   return result ? result.slice(1) : result
 }
 
-export function post (url, paramsObj) {
+export const post = (url, paramsObj) => {
   return _fetch(url, 'POST', paramsObj)
 }
 
-export function get (url, paramsObj) {
+export const get = (url, paramsObj) => {
   return _fetch(url, 'GET', paramsObj)
 }
 
-export function _fetch (url, method, paramsObj) {
+export const _fetch = (url, method, paramsObj) => {
   return fetch(url, {
     method: method,
     credentials: 'include',
@@ -24,13 +24,16 @@ export function _fetch (url, method, paramsObj) {
     },
     body: obj2params(paramsObj)
   }).then(res => {
-    if (res.status === 200) {
-      return res.json()
-    } else {
-      this.$message({
-        type: 'warning',
-        message: `${method}接口交互失败`
-      })
-    }
+    return new Promise((resolve, reject) => {
+      if (res.status === 200) {
+        res.json().then(res => {
+          resolve(res)
+        })
+      } else {
+        res.text().then(text => {
+          reject(new Error(`${url}-->${text}-->${res.status}`))
+        })
+      }
+    })
   })
 }
