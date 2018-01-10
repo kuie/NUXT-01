@@ -1,7 +1,5 @@
 const Koa = require('koa')
 const app = new Koa()
-/*功用不明*/
-const co = require('co');
 /*处理json格式数据*/
 const json = require('koa-json');
 /*错误处理*/
@@ -12,6 +10,7 @@ const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
 
 const index = require('./api/index')
+const util = require('util')
 onerror(app);
 /*应用中间件*/
 app.use(bodyparser({
@@ -24,7 +23,7 @@ app.use(async (ctx, next) => {
   const start = new Date();
   await next();
   const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  util.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
 app.use(async (ctx, next) => {

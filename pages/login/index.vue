@@ -33,11 +33,16 @@
     methods: {
       submitForm () {
         this.submitState = true
-        login(this.form.name, this.form.pwd).then(res => {
-          console.log(res)
-        }).finally(() => {
-          this.submitState = false
-        })
+        login(this.form.name, this.form.pwd)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          .finally(() => {
+            this.submitState = false
+          })
       }
     }
   }

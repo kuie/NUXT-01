@@ -2,15 +2,13 @@
   <div class="hello">
     <div class="loadingBox">
       <svg viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="25" :fill="Color" fill-opacity="0.2"></circle>
-        <circle class="path" cx="50" cy="50" r="20" :fill="Color" fill-opacity="0.4"></circle>
-        <circle class="path" cx="50" cy="50" r="15" :fill="Color" fill-opacity="0.6"></circle>
-        <circle class="path" cx="50" cy="50" r=10 :fill="Color" fill-opacity="0.8"></circle>
-        <circle class="path" cx="50" cy="50" r="5" :fill="Color" fill-opacity="1"></circle>
+        <circle class="path" cx="50" cy="50" r="25" :fill="Color" fill-opacity=".2"></circle>
+        <circle class="path" cx="50" cy="50" r="20" :fill="Color" fill-opacity=".2"></circle>
+        <circle class="path" cx="50" cy="50" r="15" :fill="Color" fill-opacity=".2"></circle>
+        <circle class="path" cx="50" cy="50" r=10 :fill="Color" fill-opacity=".2"></circle>
+        <circle class="path" cx="50" cy="50" r="5" :fill="Color" fill-opacity=".2"></circle>
       </svg>
-      <h2>
-        Loading...
-      </h2>
+      <h2 :style="`color:${Color}`" class="loadingBox">Loading...</h2>
     </div>
   </div>
 </template>
@@ -62,6 +60,6 @@
   }
 
   h2 {
-    margin-top: 15px;
+    text-align: center;
   }
 </style>
