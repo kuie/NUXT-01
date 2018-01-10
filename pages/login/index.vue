@@ -1,5 +1,5 @@
 <template>
-  <div class="User">
+  <div class="login">
     <el-form v-model="form" label-position="left" label-width="100px">
       <el-form-item prop="name" label="用户名：">
         <el-input autoComplete="off" name="name" type="text" v-model="form.name"></el-input>
@@ -14,6 +14,8 @@
 
 <script>
   'use strict'
+  import { login } from '../../API/index'
+
   export default {
     layout () {
       return 'default'
@@ -31,10 +33,7 @@
     methods: {
       submitForm () {
         this.submitState = true
-        fetch('/api/json', {
-          method: 'post',
-          data: { a: 2 }
-        }).then(res => {
+        login(this.form.name, this.form.pwd).then(res => {
           console.log(res)
         }).finally(() => {
           this.submitState = false
@@ -45,7 +44,7 @@
 </script>
 
 <style scoped lang="less">
-  .User {
+  .login {
     width: 80%;
     margin: 30px auto;
     .el-button {

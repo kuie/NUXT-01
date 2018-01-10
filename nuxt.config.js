@@ -53,14 +53,10 @@ module.exports = {
           name: 'img/[name].[hash].[ext]'
         }
       },
-    ],
-    vendor: [
-      'axios',
-      'element-ui'
     ]
   },
   plugins: [
-    { src: '~plugins/vue-ElementUI', ssr: false }
+    { src: '~plugins/vue-ElementUI', ssr: true }
   ],
   /**
    * 组件缓存
