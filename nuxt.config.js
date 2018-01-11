@@ -1,5 +1,8 @@
 module.exports = {
   dev: (process.env.NODE_ENV !== 'production'),
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhsot:3000'
+  },
   css: [
     '~assets/main.css',
   ],

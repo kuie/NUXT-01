@@ -1,3 +1,6 @@
+/* 引入elementUI组件并提示用户出现错误 */
+import { Message } from 'element-ui'
+
 export function obj2params (obj) {
   let result = ''
   for (let item in obj) {
@@ -17,6 +20,7 @@ export const get = (url, paramsObj) => {
 export const _fetch = (url, method, paramsObj) => {
   return fetch(url, {
     method: method,
+    /* 携带cookie */
     credentials: 'include',
     headers: {
       'Accept': 'appliaction/json,text/plain,*/*',
@@ -24,16 +28,14 @@ export const _fetch = (url, method, paramsObj) => {
     },
     body: obj2params(paramsObj)
   }).then(res => {
-    return new Promise((resolve, reject) => {
-      if (res.status === 200) {
-        res.json().then(res => {
-          resolve(res)
-        })
-      } else {
-        res.text().then(text => {
-          reject(new Error(`${url}-->${text}-->${res.status}`))
-        })
-      }
+    if (res.status === 200) return res.json()
+    res.text().then(text => {
+      Message({
+        type: 'error',
+        message: `${url}-->${text}-->${res.status}`,
+        duration: 5 * 1000
+      })
+      return Promise.reject(new Error(`${url}-->${text}-->${res.status}`))
     })
   })
 }

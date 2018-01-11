@@ -1,14 +1,15 @@
 <template>
   <div class="login">
-    <el-form v-model="form" label-position="left" label-width="100px">
+    <el-form label-position="left" label-width="100px">
       <el-form-item prop="name" label="用户名：">
-        <el-input autoComplete="off" name="name" type="text" v-model="form.name"></el-input>
+        <el-input autoComplete="off" name="name" type="text" v-model="name"></el-input>
       </el-form-item>
       <el-form-item prop="pwd" label="密码:">
-        <el-input autoComplete="off" name="pwd" type="password" v-model="form.pwd"></el-input>
+        <el-input autoComplete="off" name="pwd" type="password" v-model="pwd"></el-input>
       </el-form-item>
-      <el-button type="primary" @click="submitForm" :loading="submitState">提&nbsp&nbsp&nbsp&nbsp交</el-button>
     </el-form>
+    <el-button type="primary" @click="submitForm" :loading="submitState">登&nbsp&nbsp&nbsp&nbsp陆</el-button>
+    <nuxt-link to="/register" class="el-button el-button--success">注&nbsp&nbsp&nbsp&nbsp册</nuxt-link>
   </div>
 </template>
 
@@ -24,16 +25,14 @@
     data () {
       return {
         submitState: false,
-        form: {
-          name: '',
-          pwd: ''
-        }
+        name: '',
+        pwd: ''
       }
     },
     methods: {
       submitForm () {
         this.submitState = true
-        login(this.form.name, this.form.pwd)
+        login(this.name, this.pwd)
           .then(res => {
             this.$message({
               type: res.code === 200 ? 'success' : 'warning',
@@ -41,7 +40,7 @@
             })
           })
           .catch(err => {
-            this.$message({ type: 'error', message: err.toString() })
+            console.log(err)
           })
           .finally(() => {
             this.submitState = false
@@ -58,7 +57,11 @@
     .el-button {
       width: 60%;
       display: block;
-      margin: auto;
+      margin: 10px auto;
     }
+  }
+
+  a {
+    text-decoration-line: none;
   }
 </style>
