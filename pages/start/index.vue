@@ -7,11 +7,12 @@
 </template>
 
 <script>
-  import { axios } from "../../util/fetch";
+  'use strict'
+  import { axios } from '../../util/fetch'
 
   export default {
     name: 'index',
-    async asyncData (content) {
+    async asyncData ({ params, error }) {
       const res1 = await axios.post('/api/start/data', { a: 1 })
       const res2 = await axios.post('/api/start/data', { b: 2 })
       return axios.all([res1, res2]).then(res => {

@@ -14,7 +14,8 @@
     <div v-else>
       <nuxt-link to="/login" class="el-button el-button--primary">登陆</nuxt-link>
       <nuxt-link to="/register" class="el-button el-button--success">注册</nuxt-link>
-      <nuxt-link to="/start" class="el-button el-button--success">测试</nuxt-link>
+      <nuxt-link to="/start" class="el-button el-button--success">start</nuxt-link>
+      <nuxt-link :to="{path:'/user/123223'}" class="el-button el-button--success">user/:id</nuxt-link>
     </div>
   </div>
 </template>

@@ -1,4 +1,6 @@
 /* 引入elementUI组件并提示用户出现错误 */
+'use strict'
+
 import _axios from 'axios'
 import { Message } from 'element-ui'
 
