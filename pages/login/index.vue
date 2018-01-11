@@ -60,8 +60,4 @@
       margin: 10px auto;
     }
   }
-
-  a {
-    text-decoration-line: none;
-  }
 </style>

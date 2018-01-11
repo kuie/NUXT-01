@@ -48,22 +48,16 @@
     methods: {
       submitForm () {
         this.submitState = true
-        register(this.name, this.pwd, this.mail, this.tel, this.QQ)
-          .then(res => {
-            this.$message({
-              type: res.code === 200 ? 'success' : 'warning',
-              message: res.msg
-            })
+        register(this.name, this.pwd, this.mail, this.tel, this.QQ).then(res => {
+          this.$message({
+            type: res.code === 200 ? 'success' : 'warning',
+            message: res.msg
           })
-          .catch(err => {
-            this.$message({ type: 'error', message: err.toString() })
-          })
-          .finally(() => {
-            this.submitState = false
-          })
-      },
-      toRegister () {
-
+        }).catch(err => {
+          console.log(err)
+        }).finally(() => {
+          this.submitState = false
+        })
       }
     }
   }
@@ -78,9 +72,5 @@
       display: block;
       margin: 10px auto;
     }
-  }
-
-  a {
-    text-decoration-line: none;
   }
 </style>

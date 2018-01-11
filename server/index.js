@@ -13,6 +13,7 @@ const util = require('util')
 /*路由文件*/
 const index = require('./api/index')
 const loginRegister = require('./api/login&register')
+const start = require('./api/start')
 onerror(app);
 /*应用中间件*/
 app.use(bodyparser({
@@ -40,6 +41,7 @@ app.use(async (ctx, next) => {
   }
 })
 app.use(loginRegister.routes(), loginRegister.allowedMethods());
+app.use(start.routes(), start.allowedMethods());
 
 app.listen(8800, '127.0.0.1')
 

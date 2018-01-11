@@ -1,4 +1,5 @@
 /* 引入elementUI组件并提示用户出现错误 */
+import _axios from 'axios'
 import { Message } from 'element-ui'
 
 export function obj2params (obj) {
@@ -39,3 +40,6 @@ export const _fetch = (url, method, paramsObj) => {
     })
   })
 }
+
+/* 仅限asyncData方法调用的基于axios的异步交互方式 */
+export const axios = _axios

@@ -53,3 +53,22 @@ if (typeof options.rootDir !== 'string') {
 const nuxt = new Nuxt(options)
 nuxt.build()
 ```
+##项目踩坑
++ fetch is not a function与document is not define之谜
+毫无疑问基于后台渲染的项目中异步交互不能使用浏览器方法
+这也就是问什么我在使用的"document.getElementById('XX')"时候出现了报错 --> document is not define
+因为这个时候浏览器对象还没有生成呢...  
+asyncData中执行的代码都是不能使用window方法的
+任何方法都不行...
+
++ 莫名其妙的报错
+可能是因为引入了代码检查工具的原因
+我的代码总会报错
+报错的内容还都是因为少了空格多了分号之类的...
+这也让我重新学习了一下webstorm的基础设置  
+Settings-->Editor-->Code Style-->Javascript
+可以调整代码格式化(Shift+Ctrl+l)的方法
+简单的调整之后报错就少多了
+再有就是不能使用双引号而使用单引号
+行尾不能有;的问题了
+通常在Settings-->Editor-->Live Templates下可以更改一下也是可以的
